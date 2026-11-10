@@ -17,12 +17,12 @@
                         activities around your city. Friendship first, experiences second.
                     </p>
                     <div class="mt-8 flex flex-wrap gap-4">
-                        <a href="#" class="px-6 py-3 rounded-xl bg-coral text-white font-semibold hover:bg-coral/90 transition shadow-lg shadow-coral/20">
+                        <router-link to="/register" class="px-6 py-3 rounded-xl bg-coral text-white font-semibold hover:bg-coral/90 transition shadow-lg shadow-coral/20">
                             Create free account
-                        </a>
-                        <a href="#" class="px-6 py-3 rounded-xl border-2 border-midnight/20 text-midnight font-semibold hover:border-coral hover:text-coral transition">
+                        </router-link>
+                        <router-link to="/login" class="px-6 py-3 rounded-xl border-2 border-midnight/20 text-midnight font-semibold hover:border-coral hover:text-coral transition">
                             Explore activities
-                        </a>
+                        </router-link>
                     </div>
                     <div class="mt-10 flex items-center gap-6 text-sm text-midnight/60">
                         <div class="flex -space-x-2">
@@ -88,7 +88,7 @@
                     <h2 class="text-3xl font-black">Ready to hang?</h2>
                     <p class="mt-2 text-warm-white/70">Join Let's Hang and make your first plan today.</p>
                 </div>
-                <a href="#" class="px-6 py-3 rounded-xl bg-coral text-white font-semibold hover:bg-coral/90 transition">Get started for free</a>
+                <router-link to="/register" class="px-6 py-3 rounded-xl bg-coral text-white font-semibold hover:bg-coral/90 transition">Get started for free</router-link>
             </div>
         </section>
     </section>

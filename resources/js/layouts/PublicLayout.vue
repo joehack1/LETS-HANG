@@ -7,9 +7,9 @@
                     <span>Let's Hang</span>
                 </a>
                 <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-midnight/80">
-                    <a href="#" class="hover:text-coral">Discover People</a>
-                    <a href="#" class="hover:text-coral">Activities</a>
-                    <a href="#" class="hover:text-coral">Communities</a>
+                    <router-link to="/login" class="hover:text-coral">Discover People</router-link>
+                    <router-link to="/login" class="hover:text-coral">Activities</router-link>
+                    <router-link to="/login" class="hover:text-coral">Communities</router-link>
                 </nav>
                 <div class="flex items-center gap-3">
                     <a href="#" class="hidden sm:inline-block text-sm font-medium text-midnight/80 hover:text-coral">Log in</a>
@@ -34,9 +34,9 @@
                 <div>
                     <h4 class="text-white font-semibold mb-3">Product</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-coral">Discover People</a></li>
-                        <li><a href="#" class="hover:text-coral">Activities</a></li>
-                        <li><a href="#" class="hover:text-coral">Communities</a></li>
+                        <li><router-link to="/login" class="hover:text-coral">Discover People</router-link></li>
+                        <li><router-link to="/login" class="hover:text-coral">Activities</router-link></li>
+                        <li><router-link to="/login" class="hover:text-coral">Communities</router-link></li>
                     </ul>
                 </div>
                 <div>
