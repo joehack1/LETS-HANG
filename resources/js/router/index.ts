@@ -8,6 +8,9 @@ import ForgotPasswordPage from '@/pages/auth/ForgotPasswordPage.vue';
 import ResetPasswordPage from '@/pages/auth/ResetPasswordPage.vue';
 import VerifyPage from '@/pages/auth/VerifyPage.vue';
 import DashboardPage from '@/pages/dashboard/DashboardPage.vue';
+import ProfilePage from '@/pages/profile/ProfilePage.vue';
+import PeoplePage from '@/pages/discover/PeoplePage.vue';
+import PublicProfilePage from '@/pages/discover/PublicProfilePage.vue';
 
 const routes = [
     {
@@ -31,6 +34,24 @@ const routes = [
         path: '/dashboard',
         name: 'dashboard',
         component: DashboardPage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: ProfilePage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/people',
+        name: 'people',
+        component: PeoplePage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/people/:public_id',
+        name: 'person',
+        component: PublicProfilePage,
         meta: { requiresAuth: true },
     },
 ];

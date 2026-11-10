@@ -80,8 +80,44 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->date_of_birth?->age;
     }
 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function preferences()
+    {
+        return $this->hasOne(UserPreference::class);
+    }
+
+    public function profilePhotos()
+    {
+        return $this->hasMany(ProfilePhoto::class);
+    }
+
+    public function interests()
+    {
+        return $this->belongsToMany(Interest::class, 'profile_interests', 'user_id', 'interest_id');
+    }
+
     public function phoneVerifications()
     {
         return $this->hasMany(PhoneVerification::class);
+    }
+
+    public function ensureProfile(): Profile
+    {
+        return $this->profile()->firstOrCreate(['user_id' => $this->id], [
+            'display_name' => $this->name,
+        ]);
+    }
+
+    public function ensurePreferences(): UserPreference
+    {
+        return $this->preferences()->firstOrCreate(['user_id' => $this->id], [
+            'friendship_enabled' => true,
+            'dating_enabled' => false,
+            'discoverable' => true,
+        ]);
     }
 }
