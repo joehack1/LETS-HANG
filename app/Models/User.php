@@ -100,6 +100,41 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Interest::class, 'profile_interests', 'user_id', 'interest_id');
     }
 
+    public function sentConnectionRequests()
+    {
+        return $this->hasMany(ConnectionRequest::class, 'sender_id');
+    }
+
+    public function receivedConnectionRequests()
+    {
+        return $this->hasMany(ConnectionRequest::class, 'receiver_id');
+    }
+
+    public function blocksGiven()
+    {
+        return $this->hasMany(Block::class, 'blocker_id');
+    }
+
+    public function blocksReceived()
+    {
+        return $this->hasMany(Block::class, 'blocked_id');
+    }
+
+    public function hasBlocked(int $userId): bool
+    {
+        return $this->blocksGiven()->where('blocked_id', $userId)->exists();
+    }
+
+    public function isBlockedBy(int $userId): bool
+    {
+        return $this->blocksReceived()->where('blocker_id', $userId)->exists();
+    }
+
+    public function isBlockedWith(int $userId): bool
+    {
+        return $this->hasBlocked($userId) || $this->isBlockedBy($userId);
+    }
+
     public function phoneVerifications()
     {
         return $this->hasMany(PhoneVerification::class);
