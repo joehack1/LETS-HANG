@@ -8,11 +8,11 @@
     --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --color-midnight: #17172B;
-    --color-coral: #FF765E;
-    --color-sunshine: #F6C85F;
-    --color-warm-white: #F5F3EF;
-    --color-teal: #54B8A9;
+    --color-midnight: #2E1A47;
+    --color-coral: #7C3AED;
+    --color-sunshine: #EDE9FE;
+    --color-warm-white: #FFFFFF;
+    --color-teal: #A78BFA;
 }
 
 @layer base {
