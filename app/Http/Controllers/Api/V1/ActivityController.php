@@ -9,6 +9,7 @@ use App\Models\Activity;
 use App\Models\ActivityParticipant;
 use App\Models\SavedActivity;
 use App\Models\User;
+use App\Notifications\ActivityJoinRequestReceived;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -190,6 +191,10 @@ class ActivityController extends Controller
 
             return ['status' => $status, 'participant' => $participant];
         });
+
+        if ($result['status'] === 'pending') {
+            $activity->organizer->notify(new ActivityJoinRequestReceived($activity, $user));
+        }
 
         return response()->json([
             'message' => $result['status'] === 'waitlisted'

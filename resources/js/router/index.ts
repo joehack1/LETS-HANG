@@ -13,6 +13,11 @@ import PeoplePage from '@/pages/discover/PeoplePage.vue';
 import PublicProfilePage from '@/pages/discover/PublicProfilePage.vue';
 import ConnectionsPage from '@/pages/connections/ConnectionsPage.vue';
 import MessagesPage from '@/pages/messages/MessagesPage.vue';
+import NotificationsPage from '@/pages/notifications/NotificationsPage.vue';
+import AdminLayout from '@/layouts/AdminLayout.vue';
+import AdminDashboardPage from '@/pages/admin/AdminDashboardPage.vue';
+import AdminUsersPage from '@/pages/admin/AdminUsersPage.vue';
+import AdminReportsPage from '@/pages/admin/AdminReportsPage.vue';
 import ActivitiesPage from '@/pages/activities/ActivitiesPage.vue';
 import ActivityDetailPage from '@/pages/activities/ActivityDetailPage.vue';
 import CreateActivityPage from '@/pages/activities/CreateActivityPage.vue';
@@ -110,6 +115,22 @@ const routes = [
         component: MessagesPage,
         meta: { requiresAuth: true },
     },
+    {
+        path: '/notifications',
+        name: 'notifications',
+        component: NotificationsPage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/admin',
+        component: AdminLayout,
+        meta: { requiresAuth: true, requiresAdmin: true },
+        children: [
+            { path: '', name: 'admin-dashboard', component: AdminDashboardPage },
+            { path: 'users', name: 'admin-users', component: AdminUsersPage },
+            { path: 'reports', name: 'admin-reports', component: AdminReportsPage },
+        ],
+    },
 ];
 
 const router = createRouter({
@@ -128,6 +149,10 @@ router.beforeEach(async (to) => {
 
     if (to.meta.requiresAuth && !auth.user) {
         return { name: 'login' };
+    }
+
+    if (to.meta.requiresAdmin && !auth.user?.role?.match(/admin|moderator/)) {
+        return { name: 'dashboard' };
     }
 
     if (to.meta.guest && auth.user) {
