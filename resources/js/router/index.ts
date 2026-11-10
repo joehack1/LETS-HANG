@@ -12,6 +12,13 @@ import ProfilePage from '@/pages/profile/ProfilePage.vue';
 import PeoplePage from '@/pages/discover/PeoplePage.vue';
 import PublicProfilePage from '@/pages/discover/PublicProfilePage.vue';
 import ConnectionsPage from '@/pages/connections/ConnectionsPage.vue';
+import MessagesPage from '@/pages/messages/MessagesPage.vue';
+import ActivitiesPage from '@/pages/activities/ActivitiesPage.vue';
+import ActivityDetailPage from '@/pages/activities/ActivityDetailPage.vue';
+import CreateActivityPage from '@/pages/activities/CreateActivityPage.vue';
+import CommunitiesPage from '@/pages/communities/CommunitiesPage.vue';
+import CommunityDetailPage from '@/pages/communities/CommunityDetailPage.vue';
+import CreateCommunityPage from '@/pages/communities/CreateCommunityPage.vue';
 
 const routes = [
     {
@@ -59,6 +66,48 @@ const routes = [
         path: '/connections',
         name: 'connections',
         component: ConnectionsPage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/activities',
+        name: 'activities',
+        component: ActivitiesPage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/activities/create',
+        name: 'activity-create',
+        component: CreateActivityPage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/activities/:public_id',
+        name: 'activity-detail',
+        component: ActivityDetailPage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/communities',
+        name: 'communities',
+        component: CommunitiesPage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/communities/create',
+        name: 'community-create',
+        component: CreateCommunityPage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/communities/:slug',
+        name: 'community-detail',
+        component: CommunityDetailPage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/messages',
+        name: 'messages',
+        component: MessagesPage,
         meta: { requiresAuth: true },
     },
 ];

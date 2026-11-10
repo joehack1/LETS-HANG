@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\ConnectionRequest;
 use App\Models\Friendship;
 use App\Models\User;
+use App\Notifications\ConnectionAccepted;
+use App\Notifications\ConnectionRequestReceived;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -118,6 +120,8 @@ class ConnectionController extends Controller
             'message' => $request->input('message'),
         ]);
 
+        $receiver->notify(new ConnectionRequestReceived($connectionRequest));
+
         return response()->json([
             'message' => 'Connection request sent.',
             'request' => $this->requestPayload($connectionRequest->fresh(['sender', 'receiver'])),
@@ -144,6 +148,8 @@ class ConnectionController extends Controller
         }
 
         $cr->update(['status' => 'accepted']);
+
+        $cr->sender->notify(new ConnectionAccepted($cr));
 
         [$low, $high] = Friendship::canonicalIds($cr->sender_id, $cr->receiver_id);
         Friendship::firstOrCreate([
