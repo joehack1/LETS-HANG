@@ -14,6 +14,7 @@ import PublicProfilePage from '@/pages/discover/PublicProfilePage.vue';
 import ConnectionsPage from '@/pages/connections/ConnectionsPage.vue';
 import MessagesPage from '@/pages/messages/MessagesPage.vue';
 import NotificationsPage from '@/pages/notifications/NotificationsPage.vue';
+import PricingPage from '@/pages/premium/PricingPage.vue';
 import AdminLayout from '@/layouts/AdminLayout.vue';
 import AdminDashboardPage from '@/pages/admin/AdminDashboardPage.vue';
 import AdminUsersPage from '@/pages/admin/AdminUsersPage.vue';
@@ -130,6 +131,12 @@ const routes = [
             { path: 'users', name: 'admin-users', component: AdminUsersPage },
             { path: 'reports', name: 'admin-reports', component: AdminReportsPage },
         ],
+    },
+    {
+        path: '/premium',
+        name: 'premium',
+        component: PricingPage,
+        meta: { requiresAuth: true },
     },
 ];
 

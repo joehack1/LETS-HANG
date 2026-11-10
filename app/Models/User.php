@@ -167,6 +167,28 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withTimestamps();
     }
 
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function activeSubscription()
+    {
+        return $this->subscriptions()->where('status', 'active')->where(function ($q) {
+            $q->whereNull('ends_at')->orWhere('ends_at', '>', now());
+        })->latest()->first();
+    }
+
+    public function isPremium(): bool
+    {
+        return $this->activeSubscription() !== null;
+    }
+
     public function phoneVerifications()
     {
         return $this->hasMany(PhoneVerification::class);

@@ -11,5 +11,6 @@ Route::prefix('v1')->group(function () {
     require __DIR__.'/api/communities.php';
     require __DIR__.'/api/messaging.php';
     require __DIR__.'/api/safety.php';
+    require __DIR__.'/api/payments.php';
     require __DIR__.'/api/admin.php';
 });
