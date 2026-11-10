@@ -11,6 +11,7 @@ import DashboardPage from '@/pages/dashboard/DashboardPage.vue';
 import ProfilePage from '@/pages/profile/ProfilePage.vue';
 import PeoplePage from '@/pages/discover/PeoplePage.vue';
 import PublicProfilePage from '@/pages/discover/PublicProfilePage.vue';
+import ConnectionsPage from '@/pages/connections/ConnectionsPage.vue';
 
 const routes = [
     {
@@ -52,6 +53,12 @@ const routes = [
         path: '/people/:public_id',
         name: 'person',
         component: PublicProfilePage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: '/connections',
+        name: 'connections',
+        component: ConnectionsPage,
         meta: { requiresAuth: true },
     },
 ];
